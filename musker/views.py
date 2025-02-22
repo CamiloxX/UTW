@@ -15,7 +15,7 @@ def home(request):
 				meep = form.save(commit=False)
 				meep.user = request.user
 				meep.save()
-				messages.success(request, ("Your Meep Has Been Posted!"))
+				messages.success(request, ("Publicado!"))
 				return redirect('home')
 		
 		meeps = Meep.objects.all().order_by("-created_at")
@@ -208,7 +208,7 @@ def meep_show(request, pk):
 	if meep:
 		return render(request, "show_meep.html", {'meep':meep})
 	else:
-		messages.success(request, ("That Meep Does Not Exist..."))
+		messages.success(request, ("No existe ese Twt"))
 		return redirect('home')		
 
 
@@ -220,10 +220,10 @@ def delete_meep(request, pk):
 			# Delete The Meep
 			meep.delete()
 			
-			messages.success(request, ("The Meep Has Been Deleted!"))
+			messages.success(request, ("!"))
 			return redirect(request.META.get("HTTP_REFERER"))	
 		else:
-			messages.success(request, ("You Don't Own That Meep!!"))
+			messages.success(request, ("!"))
 			return redirect('home')
 
 	else:
@@ -245,13 +245,13 @@ def edit_meep(request,pk):
 					meep = form.save(commit=False)
 					meep.user = request.user
 					meep.save()
-					messages.success(request, ("Your Meep Has Been Updated!"))
+					messages.success(request, ("Se ha actualizado!"))
 					return redirect('home')
 			else:
 				return render(request, "edit_meep.html", {'form':form, 'meep':meep})
 	
 		else:
-			messages.success(request, ("You Don't Own That Meep!!"))
+			messages.success(request, ("."))
 			return redirect('home')
 
 	else:
